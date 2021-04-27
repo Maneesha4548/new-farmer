@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 from django import forms
-from FarMeKart.models import Vegpro,Userpro
+from FarMeKart.models import Vegpro
 
 class UsregFo(UserCreationForm):
 	password1=forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control","placeholder":"Enter Password"}))
@@ -60,3 +60,32 @@ class Vegfr(forms.ModelForm):
 # 	class Meta:
 # 		model = Userpro
 # 		fields = ["item_type","item_name","is_user","quantity","price","impf"]
+
+
+class Userupdate(forms.ModelForm):
+	class Meta:
+		model=Vegpro
+		fields=['item_type' ,'item_name' ,'quantity','price']
+		widgets = {
+		"item_type":forms.TextInput(attrs = {
+			"class":"form-control",
+			"placeholder":"update your item type",
+			"required":True,
+			}),
+		"item_name":forms.TextInput(attrs = {
+			"class":"form-control",
+			"placeholder":"update your item name",
+			"required":True,
+			}),	
+		"quantity":forms.NumberInput(attrs = {
+			"class":"form-control",
+			"placeholder":"update your quantity",
+			"required":True,
+			}),	
+		"price":forms.NumberInput(attrs = {
+			"class":"form-control",
+			"placeholder":"update your price",
+			"required":True,
+			}),	
+
+		}

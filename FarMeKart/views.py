@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from FarMeKart.forms import UsregFo,ChpwdForm,UpdPfle,Vegfr
+from FarMeKart.forms import UsregFo,ChpwdForm,UpdPfle,Vegfr,Userupdate
 from django.contrib.auth.decorators import login_required
 from farmer import settings
 from django.core.mail import send_mail
@@ -67,16 +67,6 @@ def dashboard(re):
 def farmerdashboard(request):
 	return render(request,'html/farmerdashboard.html')
 
-@login_required
-def delitem(req,t):
-	data=Vegpro.objects.get(id=t)
-	print(data.id)
-	if req.method == "POST":
-		print(data.id)
-		data.delete()
-		return redirect('/dt')
-	return render(req,'html/userdelete.html',{'sd':data})
-
 
 @login_required
 def vegf(request):
@@ -90,6 +80,31 @@ def vegf(request):
 			return redirect('/dsf')
 	s=Vegfr()
 	return render(request,'html/data.html',{'a':s,'e':t})
+
+
+
+
+@login_required
+def infodelete(req,et):
+	data=Vegpro.objects.get(id=et)
+	print(data.id)
+	if req.method == "POST":
+		print(data.id)
+		data.delete()
+		return redirect('/dt')
+	return render(req,'html/userdelete.html',{'sd':data})
+
+
+
+def userupdate(up,si):
+	t=Vegpro.objects.get(id=si)
+	if up.method=="POST":
+		d=Userupdate(up.POST,instance=t)
+		if d.is_valid():
+			d.save()
+			return redirect('/dt')
+	d=Userupdate(instance=t)
+	return render(up,'html/updateuser.html',{'us':d})
 
 
 

@@ -24,7 +24,7 @@ def createpf(sender,instance,created,**kwargs):
 class Vegpro(models.Model):
 	v = [('A',"Vegetables"),('B','Fruits')]
 	item_type=models.CharField(max_length=10,choices=v)
-	item_name=models.CharField(max_length=10)
+	item_name=models.CharField(max_length=20)
 	quantity=models.IntegerField(default="")
 	is_farmer = models.IntegerField(default=0)
 	is_stock = models.IntegerField(default=0)
@@ -33,26 +33,26 @@ class Vegpro(models.Model):
 	create_date=models.DateField(auto_now_add=True)
 	a=models.ForeignKey(User,on_delete=models.CASCADE)
 
-class RequserPro(models.Model):
-	is_user=models.BooleanField(default=False)
-	quantity=models.IntegerField(default="10")
-	price=models.DecimalField(max_digits=6,decimal_places=2)
-	impf=models.ImageField(upload_to='images/',default="user logo.png")
-	item_type=models.CharField(max_length=10)
-	item_name=models.CharField(max_length=10)
-	u1 = models.OneToOneField(User,on_delete=models.CASCADE,null=False,default="")
+# class RequserPro(models.Model):
+# 	is_user=models.BooleanField(default=False)
+# 	quantity=models.IntegerField(default="10")
+# 	price=models.DecimalField(max_digits=6,decimal_places=2)
+# 	impf=models.ImageField(upload_to='images/',default="user logo.png")
+# 	item_type=models.CharField(max_length=10)
+# 	item_name=models.CharField(max_length=10)
+# 	u1 = models.OneToOneField(User,on_delete=models.CASCADE,null=False,default="")
 
 
-@receiver(post_save,sender=User)
-def createpf(sender,instance,created,**kwargs):
-	if created:
-		UserPro.objects.create(u1=instance)
+# @receiver(post_save,sender=User)
+# def createpf(sender,instance,created,**kwargs):
+# 	if created:
+# 		UserPro.objects.create(u1=instance)
 
-class Userpro(models.Model):
-	item_type=models.CharField(max_length=10)
-	item_name=models.CharField(max_length=10)
-	quantity=models.IntegerField(default="")
-	is_req = models.IntegerField(default=0)
-	price=models.DecimalField(max_digits=6,decimal_places=2)
-	impf=models.ImageField(upload_to='images/')
-	a1=models.ForeignKey(User,on_delete=models.CASCADE)
+# class Userpro(models.Model):
+# 	item_type=models.CharField(max_length=10)
+# 	item_name=models.CharField(max_length=10)
+# 	quantity=models.IntegerField(default="")
+# 	is_req = models.IntegerField(default=0)
+# 	price=models.DecimalField(max_digits=6,decimal_places=2)
+# 	impf=models.ImageField(upload_to='images/')
+# 	a1=models.ForeignKey(User,on_delete=models.CASCADE)

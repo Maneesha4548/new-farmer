@@ -15,5 +15,7 @@ urlpatterns = [
     path('cn/',views.contact,name="ct"),
     path('ab/',views.about,name="au"),
     path('dt/',views.vegf,name="da"),
-    path('dltit/<int:t>/',views.delitem,name="del"),
+   # path('dltit/<int:t>/',views.delitem,name="del"),
+    path('infodelete/<int:et>',views.infodelete,name='infodelete'),
+    path('e/<int:si>/',views.userupdate,name="ue"),
 ]
